@@ -5,7 +5,7 @@
 ** bootstrap
 */
 
-#include "my_rpg.h"
+#include "my_defender.h"
 
 sfRenderWindow *create_window(unsigned int width, unsigned int height,
 unsigned int fps)
@@ -16,7 +16,7 @@ unsigned int fps)
     mode.width = width;
     mode.height = height;
     mode.bitsPerPixel = 32;
-    window = sfRenderWindow_create(mode, "My_rpg",
+    window = sfRenderWindow_create(mode, "My defender",
     sfClose | sfResize, NULL);
     sfRenderWindow_setFramerateLimit(window, fps);
     sfRenderWindow_setVerticalSyncEnabled(window, sfTrue);

@@ -48,6 +48,5 @@ char **my_arraydup(char **);
 char **my_arraycpy(char **, char **);
 int my_arraylen(char **);
 char *my_strdupcat(char *, char *);
-char **my_realloc_array(char **, int);
 
 #endif

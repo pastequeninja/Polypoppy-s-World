@@ -39,7 +39,6 @@ SRC	=	my_compute_power_rec.c		\
 		my_arraydup.c			\
 		my_arraylen.c			\
 		my_arraycpy.c			\
-		my_realloc_array.c		\
 		my_strdupcat.c			\
 		my_swap.c
 
@@ -48,10 +47,6 @@ OBJS	=	$(SRC:.c=.o)
 CFLAGS	=	-I./../../include -W -Wall -Wextra -Werror
 
 COMPL	=	ar rc
-
-CC	=	gcc
-
-RM	=	rm -f
 
 all: $(NAME)
 
@@ -65,7 +60,3 @@ fclean: clean
 	$(RM) $(NAME)
 
 re: fclean all
-
-debug: CFLAGS += -g
-
-debug: re

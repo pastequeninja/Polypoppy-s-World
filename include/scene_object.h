@@ -8,154 +8,155 @@
 #ifndef scene_object_H
 #define scene_object_H
 
-#include "my_rpg.h"
+#include "my_defender.h"
 
-enum game_object_e {
-    PLAYER,
-    SHAFT,
-    PLAYER_HOUSE_FS_SCENE,
-    BROWN_HOUSE_FS_SCENE,
-    ROCK,
-    PNJ,
-    FIRST_CHEST,
-    SECOND_CHEST,
-    INTRO_SKIP1,
-    INTRO_SKIP2,
-    INTRO_FAIRY,
-    INTRO_BUBBLE1,
-    INTRO_BUBBLE2,
-    INTRO_BUBBLE3,
-    INTRO_INTERROGATION,
-    INTRO_BUBBLE_RED,
-    INTRO_KING_WALK,
-    INTRO_KING_SURPRISE,
-    INTRO_BUBBLE4,
-    INTRO_BUBBLE5,
-    PLANT_HOUSE,
-    BED_HOUSE,
-    BACKGROUND_HOUSE_1,
-    ENEMY_TRAINER,
-    CONE,
-    TABLE,
+enum character_e {
+    CHARACTER_1,
+    CHARACTER_2,
+    CHARACTER_3
 };
 
-enum particle_e {
-    LEAF,
-    WIND
+enum tower_e {
+    NO_TOWER = 0,
+    TOWER_ONE,
+    TOWER_TWO,
+    TOWER_THREE,
+    TOWER_FOUR
+};
+
+enum direction_e {
+    FIRST_HORIZONTAL_RIGHT = 1,
+    FIRST_DIAGONAL_RIGHT_DOWN,
+    FIRST_VERTICAL_DOWN,
+    FIRST_DIAGONAL_LEFT_DOWN,
+    FIRST_HORIZONTAL_LEFT,
+    SECOND_DIAGONAL_LEFT_DOWN,
+    SECOND_VERTICAL_DOWN,
+    SECOND_DIAGONAL_RIGHT_DOWN,
+    SECOND_HORIZONTAL_RIGHT,
+    FIRST_DIAGONAL_RIGHT_UP,
+    FIRST_VERTICAL_UP,
+    FIRST_DIAGONAL_LEFT_UP,
+    SECOND_HORIZONTAL_LEFT,
+    SECOND_DIAGONAL_LEFT_UP,
+    SECOND_VERTICAL_UP,
+    SECOND_DIAGONAL_RIGHT_UP,
+    THIRD_HORIZONTAL_RIGHT,
+    THIRD_DIAGONAL_RIGHT_DOWN,
+    THIRD_VERTICAL_DOWN,
+    THIRD_DIAGONAL_LEFT_DOWN,
+    THIRD_HORIZONTAL_LEFT,
+    THIRD_DIAGONAL_LEFT_UP,
+    THIRD_VERTICAL_UP,
+    FOURTH_DIAGONAL_LEFT_UP,
+    FOURTH_HORIZONTAL_LEFT,
+    FOURTH_DIAGONAL_LEFT_DOWN,
+    FOURTH_VERTICAL_DOWN,
+    FOURTH_DIAGONAL_RIGHT_DOWN,
+    FOURTH_HORIZONTAL_RIGHT,
+    FIFTH_DIAGONAL_RIGHT_DOWN,
+    FIFTH_VERTICAL_DOWN
 };
 
 typedef struct background_s {
     sfTexture *texture;
     sfSprite *sprite;
     sfVector2f pos;
-    sfClock *clock;
-    sfVector2f scale;
-    int move_x;
-    int move_y;
 } background_t;
 
 typedef struct game_object_s {
-    enum game_object_e type;
-    int item;
-    int move_x;
-    int move_y;
-    int comparison;
-    int stock_top;
-    int stock_left;
-    bool display;
-    bool interaction;
-    bool open;
-    bool hit;
+    enum direction_e direction;
+    enum character_e character;
+    enum tower_e tower;
+    int time;
+    int display;
+    int diff_for_direction;
+    int life;
+    int pos_in_list;
+    float speed_x;
+    float speed_y;
     sfClock *clock;
     sfTexture *texture;
     sfSprite *sprite;
     sfVector2f pos;
-    sfVector2f scale;
+    sfVector2f size;
     sfIntRect rect;
-    sfVector2f hitbox_pos;
-    sfVector2f hitbox_size;
+    sfText *text;
+    sfFont *font;
+    sfColor color;
+    sfVector2f pos_life;
     struct game_object_s *next;
     struct game_object_s *prev;
 } game_object_t;
 
-typedef struct player_s {
-    int move_x;
-    int move_y;
-    int up;
-    int down;
-    int right;
-    int left;
-    int attack;
-    int power;
-    int hp;
-    int current_level;
-    float level;
-    bool attacking;
-    inventory_t *inventory;
-    game_object_t *game_object;
-} player_t;
-
-typedef struct enemy_s {
-    int hp;
-    int attack;
-    bool attacking;
-    game_object_t *obj;
-    struct enemy_s *prev;
-    struct enemy_s *next;
-} enemy_t;
-
-typedef struct event_click_s {
-    int user_click;
-    int fairy_event;
-} event_click_t;
-
-typedef struct pnj_s {
-    bool speak;
-    bool has_talk_with;
-    char *name;
-    char **discuss;
-    int next_dialog;
-    sfClock *clock;
-    game_object_t *game_object;
-    struct pnj_s *next;
-    struct pnj_s *prev;
-} pnj_t;
-
-typedef struct framebuffer_s {
-    int width;
-    int height;
-    sfUint8 *pixels;
-} framebuffer_t;
-
-typedef struct all_particle_s {
+typedef struct tower_move_s {
+    enum tower_e type;
+    int price;
+    sfMusic *music;
     sfColor color;
-    int y;
-    int x;
-    int speed;
-    struct all_particle_s *next;
-    struct all_particle_s *prev;
-} all_particle_t;
-
-typedef struct particle_s {
-    enum particle_e type;
-    sfSprite *sprite;
     sfTexture *texture;
-    framebuffer_t *frame;
-    game_object_t *game_object;
-    all_particle_t *all_particle;
-    struct particle_s *next;
-    struct particle_s *prev;
-} particle_t;
+    sfSprite *sprite;
+    sfVector2f pos;
+    sfIntRect rect;
+    sfVector2f size;
+    sfCircleShape *circle;
+} tower_move_t;
+
+typedef struct emplacement_s {
+    sfColor color;
+    sfVector2f pos;
+    sfVector2f size;
+    sfRectangleShape *rect;
+    sfTexture *texture;
+    sfSprite *sprite;
+    struct emplacement_s *next;
+    struct emplacement_s *prev;
+} emplacement_t;
+
+typedef struct rocket_s {
+    struct game_object_s *tower;
+    struct game_object_s *enemy;
+    bool display;
+    bool pause;
+    bool calcul_y;
+    bool malloc;
+    float a;
+    float b;
+    float speed;
+    int damage;
+    sfTexture *texture;
+    sfSprite *sprite;
+    sfVector2f pos;
+    sfVector2f start;
+    sfVector2f end;
+    sfClock *clock;
+    struct rocket_s *next;
+    struct rocket_s *prev;
+} rocket_t;
+
+typedef struct heart_s {
+    bool display;
+    sfTexture *texture;
+    sfSprite *sprite;
+    sfVector2f pos;
+    sfVector2f size;
+    sfIntRect rect;
+    struct heart_s *next;
+    struct heart_s *prev;
+} heart_t;
 
 typedef struct scene_object_s {
-    background_t *background;
-    game_object_t *game_object;
-    player_t *player;
-    enemy_t *enemy;
-    event_click_t *clicks;
-    pnj_t *pnj;
-    particle_t *particle;
-    int test;
+    int nb_character;
+    int nb_malloc;
+    bool pause;
+    float speed;
+    int life;
+    struct background_s *background;
+    struct game_object_s *game_object;
+    struct tower_move_s *tower_move;
+    struct emplacement_s *emplacement;
+    struct rocket_s *rocket;
+    struct heart_s *heart;
 } scene_object_t;
 
 #endif
