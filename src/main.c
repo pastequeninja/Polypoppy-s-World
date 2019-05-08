@@ -1,11 +1,11 @@
 /*
 ** EPITECH PROJECT, 2019
-** main
+** my_rpg
 ** File description:
-** my_defedner
+** min
 */
 
-#include "my_defender.h"
+#include "my_rpg.h"
 
 int main(void)
 {
