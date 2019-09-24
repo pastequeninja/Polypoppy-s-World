@@ -7,7 +7,7 @@
 - ✅ Possède une fin
 - ⚠️ Manque de fluidité dans les controles
 - ⚠️ Ne pas spam l'attaque en combat -> à fixer
-- ⚠️ Chaque combat peut se terminer en victoire si on s'enfuit\n
+- ⚠️ Chaque combat peut se terminer en victoire si on s'enfuit
 
 **Jeux durant ~20 minutes**
 # Obtention grade A 🙆
