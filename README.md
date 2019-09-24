@@ -1,10 +1,13 @@
-# my_rpg
+# Polypoppy's Wolrd - RPG
 
-RPG réalisé en groupe de 4 :
-- Système de quête
-- Système de collision générique
-- Système de particule (sur les arbres et le vent)
-- Game object générique
-- Possède une fin
+- ✅ Système de quête
+- ✅ Système de collision générique
+- ✅ Système de particule (sur les arbres et le vent)
+- ✅ Objets génériques
+- ✅ Possède une fin
+- ⚠️ Manque de fluidité dans les controles
+- ⚠️ Ne pas spam l'attaque en combat -> à fixer
+- ⚠️ Chaque combat peut se terminer en victoire si on s'enfuit\n
 
-# Obtention grade A :pizza:
+**Jeux durant ~20 minutes**
+# Obtention grade A 🙆
