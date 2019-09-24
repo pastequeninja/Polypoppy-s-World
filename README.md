@@ -1,4 +1,4 @@
-# Polypoppy's Wolrd - RPG
+# Polypoppy's World - RPG
 
 - ✅ Système de quête
 - ✅ Système de collision générique
