@@ -7,4 +7,4 @@ RPG réalisé en groupe de 4 :
 - Game object générique
 - Possède une fin
 
-# Obtention grade A
+# Obtention grade A :pizza:
