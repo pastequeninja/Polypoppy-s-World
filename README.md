@@ -10,4 +10,3 @@
 - ⚠️ Chaque combat peut se terminer en victoire si on s'enfuit
 
 **Jeux durant ~20 minutes**
-# Obtention grade A 🙆
